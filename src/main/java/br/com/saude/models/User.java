@@ -1,8 +1,8 @@
 package br.com.saude.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Date;
-import java.time.LocalDate;
 
 import javax.persistence.*;
 
@@ -13,6 +13,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name="users")
+@NamedNativeQueries({
+    @NamedNativeQuery(
+        name="listUserProfiles",
+        query="SELECT * FROM users",
+        resultClass=User.class
+    ),
+})
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -25,12 +32,12 @@ public class User implements Serializable {
     private Date birthDay;
 
     @Column(name="weight_", nullable=false)
-    private int weight;
+    private BigDecimal weight;
 
     @Column(nullable=false)
     private int height;
 
-    @OneToOne(fetch=FetchType.LAZY, optional=false)
+    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER, optional=false)
     @JoinColumn(name="goal", referencedColumnName="id")
     private Goals goal;
 }
