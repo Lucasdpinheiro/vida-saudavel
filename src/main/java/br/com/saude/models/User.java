@@ -3,7 +3,6 @@ package br.com.saude.models;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.sql.Date;
 
 import javax.persistence.*;
 
