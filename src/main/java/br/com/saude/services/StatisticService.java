@@ -20,6 +20,26 @@ public class StatisticService {
     @Inject
     RecordService recordService;
 
+    public double getTDEE(int userId) {
+        double activityFactor =  userService
+            .getUserProfile(userId)
+            .getActivityLevel()
+            .getValue();
+        double BMR = this.getBMR(userId);
+
+        return BMR * activityFactor;
+    }
+
+    public double getBMR(int userId) {
+        User user = userService.getUserProfile(userId);
+        double weight = user.getWeight(); 
+        double height = user.getHeight();
+        double age = this.getAge(user);
+        Sex sex = user.getSex();
+
+        return weight + 6.25 * height - 5 * age + (sex == Sex.MALE? 5 : -161);
+    }
+
     public double getBMI(int userId) {
         User user = userService.getUserProfile(userId);
         int weight = user.getWeight(); 
@@ -35,16 +55,6 @@ public class StatisticService {
         WeightLossRecord lastRecord = (WeightLossRecord) record.get(record.size() - 1);
 
         return firstRecord.getCurrentWeight() - lastRecord.getCurrentWeight();
-    }
-
-    public double getBMR(int userId) {
-        User user = userService.getUserProfile(userId);
-        double weight = user.getWeight(); 
-        double height = user.getHeight();
-        double age = this.getAge(user);
-        Sex sex = user.getSex();
-
-        return weight + 6.25 * height - 5 * age + (sex == Sex.MALE? 5 : -161);
     }
 
     private int getAge(User user) {
