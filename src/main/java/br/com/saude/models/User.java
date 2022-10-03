@@ -1,7 +1,6 @@
 package br.com.saude.models;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.*;
@@ -32,7 +31,7 @@ public class User implements Serializable {
     private LocalDate birthDay;
 
     @Column(name="weight_", nullable=false)
-    private BigDecimal weight;
+    private int weight;
 
     @Column(nullable=false)
     private int height;
