@@ -7,13 +7,13 @@ public enum ActivityLevel {
     HIGHLY_ACTIVE(1.725),
     PROFESSIONAL(1.9);
 
-    private final double valor;
+    private final double value;
 
-    ActivityLevel(double valor) {
-        this.valor = valor;
+    ActivityLevel(double value) {
+        this.value = value;
     }
 
-    public double getValor() {
-        return valor;
+    public double getValue() {
+        return value;
     }
 }
