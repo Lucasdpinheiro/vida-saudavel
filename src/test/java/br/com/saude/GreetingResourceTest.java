@@ -1,20 +1,20 @@
-package br.com.saude;
+// package br.com.saude;
 
-import io.quarkus.test.junit.QuarkusTest;
-import org.junit.jupiter.api.Test;
+// import io.quarkus.test.junit.QuarkusTest;
+// import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
+// import static io.restassured.RestAssured.given;
+// import static org.hamcrest.CoreMatchers.is;
 
-@QuarkusTest
-public class GreetingResourceTest {
+// @QuarkusTest
+// public class GreetingResourceTest {
 
-    // @Test
-    // public void testHelloEndpoint() {
-    //     given()
-    //       .when().get("/users")
-    //       .then()
-    //          .statusCode(200)
-    //          .body(is("Hello!!!"));
-    // }
-}
+//     // @Test
+//     // public void testHelloEndpoint() {
+//     //     given()
+//     //       .when().get("/users")
+//     //       .then()
+//     //          .statusCode(200)
+//     //          .body(is("Hello!!!"));
+//     // }
+// }
