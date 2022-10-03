@@ -1,4 +1,4 @@
-package br.com.saude.models.Enums;
+package br.com.saude.models.enums;
 
 public enum ActivityLevel {
     SEDENTARY(1.2),

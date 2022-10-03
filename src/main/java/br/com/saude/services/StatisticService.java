@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 import br.com.saude.models.User;
 import br.com.saude.models.WeightLossRecord;
-import br.com.saude.models.Enums.Sex;
+import br.com.saude.models.enums.Sex;
 
 @RequestScoped
 public class StatisticService {

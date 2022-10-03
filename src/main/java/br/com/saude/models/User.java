@@ -5,7 +5,8 @@ import java.time.LocalDate;
 
 import javax.persistence.*;
 
-import br.com.saude.models.Enums.Sex;
+import br.com.saude.models.enums.ActivityLevel;
+import br.com.saude.models.enums.Sex;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,6 +41,10 @@ public class User implements Serializable {
     @Column(length=10)
     @Enumerated(EnumType.STRING)
     private Sex sex;
+
+    @Column(name="activity_level", length=20)
+    @Enumerated(EnumType.STRING)
+    private ActivityLevel activityLevel;
 
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER, optional=false)
     @JoinColumn(name="goal", referencedColumnName="id")
