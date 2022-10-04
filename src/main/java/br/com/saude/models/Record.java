@@ -19,6 +19,6 @@ public class Record implements Serializable {
     @Column(nullable=false)
     private LocalDate date;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 }

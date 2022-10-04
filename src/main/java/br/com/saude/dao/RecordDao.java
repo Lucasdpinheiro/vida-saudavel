@@ -1,7 +1,9 @@
 package br.com.saude.dao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -41,6 +43,32 @@ public class RecordDao {
     @Transactional
     public <T extends Record> void insertRecord(T record) {
         em.persist(record);
+    }
+
+    @Transactional
+    public List<Integer> getWaterIntakeFromPeriod(int userId, LocalDate startDate, LocalDate endDate) {
+        String sqlString = new StringBuilder()
+            .append("SELECT * FROM hydration ")
+            .append("WHERE user_id = :userId ")
+            .append("AND ")
+            .append("date >= :startDate ")
+            .append("AND ")
+            .append("date <= :endDate")
+            .toString();
+
+            // O atributo é do tipo integer sempre.
+        @SuppressWarnings("unchecked")
+        List<HydrationRecord> hydrationRecord = em
+            .createNativeQuery(sqlString, HydrationRecord.class)
+            .setParameter("userId", userId)
+            .setParameter("startDate", startDate)
+            .setParameter("endDate", endDate)
+            .getResultList();
+
+        return hydrationRecord
+            .stream()
+            .map(hydrationEntity -> hydrationEntity.getWaterIntake())
+            .collect(Collectors.toList());
     }
     
 }
