@@ -65,14 +65,15 @@ public class StatisticService {
 
     public HashMap<String, Double> getWaterIntakeStats(int userId, String startDate, String endDate) {
 
-        List<Integer> waterIntakehistory = recordDao.getWaterIntakeFromPeriod(userId, parseDate(startDate), parseDate(endDate));
-        double dayCount = waterIntakehistory.size();
-        double sumIntake = waterIntakehistory.stream().reduce(0, (last, next) -> last + next);
-
         HashMap<String, Double> stats = new HashMap<String, Double>();
 
+        List<Integer> waterIntakehistory = recordDao.getWaterIntakeFromPeriod(userId, parseDate(startDate), parseDate(endDate));
+
+;       double period = Period.between(parseDate(startDate), parseDate(endDate)).getDays();
+        double sumIntake = waterIntakehistory.stream().reduce(0, (last, next) -> last + next);
+
         stats.put("maxIntake", (double) waterIntakehistory.stream().reduce(0, (last, next) -> last > next? last: next));
-        stats.put("avg", sumIntake / dayCount);
+        stats.put("avg", sumIntake / period);
         return stats;
         
     }
