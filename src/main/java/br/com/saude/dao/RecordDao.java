@@ -56,7 +56,7 @@ public class RecordDao {
             .append("date <= :endDate")
             .toString();
 
-            // O atributo é do tipo integer sempre.
+        // Literalmente a classe resultante é HydrationRecord
         @SuppressWarnings("unchecked")
         List<HydrationRecord> hydrationRecord = em
             .createNativeQuery(sqlString, HydrationRecord.class)
